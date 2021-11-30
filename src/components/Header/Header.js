@@ -3,16 +3,22 @@ import './Header.css'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import PersonIcon from '@mui/icons-material/Person';
+import { Link } from 'react-router-dom';
+import { useStateValue } from '../../provider/StateProvider';
 
 function Header() {
+    const [{basket}] = useStateValue();
+
     return (
         <div className="header">
             <div className="header__logo_container">
-                <img className="header__logo" src='https://res.cloudinary.com/dvehkdedj/image/upload/v1638249699/beauty_a8bih5.png' />
+                <Link to="/">
+                    <img className="header__logo" src='https://res.cloudinary.com/dvehkdedj/image/upload/v1638249699/beauty_a8bih5.png' />
+                </Link>
             </div>
 
             <div className="header__search">
-                <SearchIcon className="header__searchIcon"/>
+                <SearchIcon className="header__searchIcon" />
                 <input className="header__searchInput" type="text" placeholder="Tìm sản phẩm, danh mục hay thương hiệu....." />
             </div>
 
@@ -34,11 +40,24 @@ function Header() {
                 </div> */}
             </div>
 
-            <div className="header__optionBasket">
-                <ShoppingBasketOutlinedIcon className="header__basketIcon" fontSize="large" />
-                <span className="header__optionLineTwo header__basketCount">0</span>
-                <span className="header__optionLineOne header__basketTitle">Giỏ Hàng</span>
-            </div>
+            <Link to="/checkout" style={{ textDecoration: 'none' }}>
+                <div className="header__optionBasket">
+                    <ShoppingBasketOutlinedIcon
+                        className="header__basketIcon"
+                        fontSize="large"
+                    />
+                    <span
+                        className="header__optionLineTwo header__basketCount"
+                        style={{
+                            color: basket?.length !== 0 ? "white" : "black",
+                            backgroundColor: basket?.length !== 0 ? "red" : ""
+                        }}
+                    >
+                        {basket?.length}
+                    </span>
+                    <span className="header__optionLineOne header__basketTitle">Giỏ Hàng</span>
+                </div>
+            </Link>
         </div>
     )
 }
