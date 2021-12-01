@@ -2,18 +2,9 @@ import React, { useState } from 'react';
 import { useStateValue } from '../../../../provider/StateProvider';
 import "./SubDetail.css";
 
-function SubDetail() {
-    const [state, dispatch] = useStateValue();
-    const [payQuantity, setPayQuantity] = useState(1);
-
-    const product = {
-        id: "1",
-        name: "Sơn môi",
-        image: "https://res.cloudinary.com/dvehkdedj/image/upload/v1638263410/0001761_son-laura-sunshine-nhat-kim-anh_550_beq9gs.jpg",
-        desc: "Hàng nhập khẩu Hàn Quốc, phù hợp cho mùa đông",
-        price: "69.000",
-        sold_number: "78"
-    }
+function SubDetail({product}) {
+    const [{basket}, dispatch] = useStateValue();
+    const [quantity, setQuantity] = useState(1);
 
     const addToBasket = () => {
         dispatch({
@@ -25,7 +16,7 @@ function SubDetail() {
                 desc: product.desc,
                 price: product.price,
                 sold_number: product.sold_number,
-                quantity: payQuantity
+                quantity: quantity
             }
         })
     }
@@ -34,6 +25,9 @@ function SubDetail() {
         <div className="subDetail">
             <div className="subDetail__name">
                 <p>{product.name}</p>
+            </div>
+            <div className="subDetail__desc">
+                <p>{product.desc}</p>
             </div>
             <div className="subDetail__sold">
                 <p>Đã Bán</p>

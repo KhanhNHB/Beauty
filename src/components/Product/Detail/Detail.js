@@ -9,7 +9,7 @@ function Detail() {
         name: "Sơn môi",
         image: "https://res.cloudinary.com/dvehkdedj/image/upload/v1638263410/0001761_son-laura-sunshine-nhat-kim-anh_550_beq9gs.jpg",
         desc: "Hàng nhập khẩu Hàn Quốc, phù hợp cho mùa đông",
-        price: "69.000",
+        price: 69000,
         sold_number: "78"
     }
 
@@ -28,7 +28,7 @@ function Detail() {
             </div>
 
             <div className="detail__right">
-                <SubDetail/>
+                <SubDetail product={product} />
             </div>
         </div>
     )

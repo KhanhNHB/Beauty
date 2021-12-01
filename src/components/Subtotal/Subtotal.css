@@ -19,13 +19,27 @@
     padding: 5px 0px;
 }
 
-.subtotal__priceTitle {
+.subtotal__price {
+    display: flex;
+}
+
+.subtotal__priceTotalTitle {
     font-size: 17px;
 }
 
-.subtotal__price {
+.subtotal__concurrency {
+    margin: 0px 10px;
+}
+
+.subtotal__priceTotal {
     color: red;
     font-size: 24px;
+}
+
+.subtotal__concurrencyTotal {
+    margin: 0px 10px;   
+    color: red;
+    font-size: 18px;
 }
 
 .subtotal__buttonPay {

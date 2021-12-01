@@ -1,17 +1,4 @@
-.basket__header {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.basket__selectHeader {
-    display: flex;
-    flex: 1;
-}
-
-.basket__body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: red;
+.basket__image {
+    width: 120px;
+    height: 120px;
 }
