@@ -1,0 +1,47 @@
+.subDetail__name {
+    font-size: 28px;
+    padding: 10px 0px;
+}
+
+.subDetail__sold {
+    display: flex;
+}
+
+.subDetail__soldNumber {
+    margin-left: 15px;
+}
+
+.subDetail__price {
+    display: flex;
+    padding: 15px 0px;
+}
+
+.subDetail__priceUnit {
+    font-size: 28px;
+    margin-right: 10px;
+}
+
+.subDetail__quantity {
+    padding: 15px 0px;
+}
+
+.subDetail__quantityNumber {
+    margin-left: 15px;
+}
+
+.subDetail__button {
+    width: 100%;
+    border: none;
+    margin-top: 10px;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #4285f4;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.subDetail__button:hover {
+    background-color: #1a94ff;
+    cursor: pointer;
+}

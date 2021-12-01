@@ -1,22 +1,22 @@
 import React from 'react';
 import "./Basket.css";
+import BasketProduct from './BasketProduct';
 
-function Basket({name, price, image}) {
+function Basket({ basket }) {
+
     return (
         <div className="basket">
             <div className="basket__header">
-                <p>Tất cả (1 sản phẩm)</p>
-                <p>Đơn giá</p>
-                <p>Số lượng</p>
-                <p>Thành tiền</p>
+                <p className="basket__selectHeader">Tất cả (1 sản phẩm)</p>
+                <p className="basket__priceHeader">Đơn giá</p>
+                <p className="basket__quantityHeader">Số lượng</p>
+                <p className="basket__totalPriceHeader">Thành tiền</p>
                 <button>Delete All</button>
             </div>
             <div className="basket__body">
-                <img src={image} alt=""/>
-                <p>{price}</p>
-                <p>SL</p>
-                <p>total</p>
-                <button>Delete</button>
+                {basket.map(product => {
+                    return <BasketProduct product={product} />
+                })}
             </div>
         </div>
     )

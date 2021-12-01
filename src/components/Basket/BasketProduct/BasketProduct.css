@@ -1,0 +1,11 @@
+.basketProduct {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+}
+
+.basketProduct__image {
+    width: 60px;
+    height: 60px;
+}

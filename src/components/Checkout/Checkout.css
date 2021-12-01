@@ -1,3 +1,26 @@
+.checkout__empty {
+    height: max-content;
+}
+
+.checkout__emptyButton {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    margin: 50px 0px;
+    color: white;
+    padding: 10px 0px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #4285f4;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.checkout__emptyButton:hover {
+    background-color: #1a94ff;
+    cursor: pointer;
+}
+
 .checkout {
     display: flex;
     padding: 20px;

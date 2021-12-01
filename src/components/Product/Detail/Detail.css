@@ -1,0 +1,9 @@
+.detail {
+    display: flex;
+    padding: 20px;
+    background-color: white;
+    height: max-content;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
