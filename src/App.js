@@ -3,7 +3,8 @@ import {
   Checkout,
   Detail,
   Header,
-  Home
+  Home,
+  Login
 } from './components';
 import {
   BrowserRouter as Router,
@@ -28,6 +29,10 @@ function App() {
           <Route
             path="/detail"
             element={<Detail />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
           />
         </Routes>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useStateValue } from '../../../../provider/StateProvider';
+import Button from "../../../Custom/Button";
 import "./SubDetail.css";
 
 function SubDetail({ product }) {
@@ -41,12 +42,7 @@ function SubDetail({ product }) {
                 <p>Số Lượng</p>
                 <p className="subDetail__quantityNumber">1</p>
             </div>
-            <button
-                className="subDetail__button"
-                onClick={addToBasket}
-            >
-                Chọn Mua
-            </button>
+            <Button title="Chọn Mua" onHandle={() => addToBasket()} />
         </div>
     )
 }

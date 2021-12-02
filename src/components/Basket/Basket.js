@@ -112,6 +112,11 @@ const Basket = () => {
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
     const handleDelete = (id) => {
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false
+        });
+
         dispatch({
             type: "DELETE_TO_BASKET",
             basket: basket,
@@ -180,13 +185,7 @@ const Basket = () => {
                                                 setConfirmDialog({
                                                     title: "Bạn muốn xoá sản phẩm này?",
                                                     isOpen: true,
-                                                    onConfirm: () => {
-                                                        handleDelete(product.id);
-                                                        setConfirmDialog({
-                                                            ...confirmDialog,
-                                                            isOpen: false
-                                                        })
-                                                    }
+                                                    onConfirm: () => { handleDelete(product.id) }
                                                 });
                                             }}>
                                                 <DeleteIcon />

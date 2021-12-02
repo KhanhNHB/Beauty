@@ -3,6 +3,7 @@ import { getBasketTotal } from '../../provider/reducer';
 import { currencyFormat } from '../../utils/CurrencyFormat';
 import { useStateValue } from "../../provider/StateProvider";
 import "./Subtotal.css";
+import Button from "../Custom/Button";
 
 function Subtotal() {
     const [{ basket }] = useStateValue();
@@ -48,9 +49,7 @@ function Subtotal() {
                     <p className="subtotal__concurrencyTotal">đ</p>
                 </div>
             </div>
-            <button className="subtotal__buttonPay" onClick={handleCheckout}>
-                Mua Hàng ({basket?.length})
-            </button>
+            <Button title={"Mua Hàng (" + basket?.length + ")"} onHandle={() => handleCheckout()}/>
         </div>
     )
 }

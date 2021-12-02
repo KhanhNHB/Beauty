@@ -1,0 +1,15 @@
+.input__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.input {
+    width: 100%;
+    margin: 10px 0px;
+    padding-top: 20px;
+    font-size: 28px;
+    outline: none;
+    border: none;
+}
