@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useStateValue } from '../../../../provider/StateProvider';
 import "./SubDetail.css";
 
-function SubDetail({product}) {
-    const [{basket}, dispatch] = useStateValue();
+function SubDetail({ product }) {
+    const [{ basket }, dispatch] = useStateValue();
     const [quantity, setQuantity] = useState(1);
 
     const addToBasket = () => {

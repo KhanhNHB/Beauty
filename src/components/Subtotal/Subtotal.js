@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { getBasketTotal } from '../../provider/reducer';
 import { currencyFormat } from '../../utils/CurrencyFormat';
+import { useStateValue } from "../../provider/StateProvider";
 import "./Subtotal.css";
 
-function Subtotal({ basket }) {
+function Subtotal() {
+    const [{ basket }] = useStateValue();
+    const [checkout, setCheckout] = useState(false);
+
     const handleTotalPrice = () => {
-        let totalPrice = 0;
+        // return currencyFormat(basket?.reduce((amount, product) => { 
+        //     amount += product.price * product.quantity; 
+        // }, 0));
+        return 0;
+    };
 
-        basket?.map(product => {
-            totalPrice += product.price * product.quantity;
-        })
+    const handleCheckout = () => {
+        setCheckout(true);
+    };
 
-        return currencyFormat(totalPrice);
+    const handleClose = () => {
+        setCheckout(false);
     }
 
     return (
@@ -19,7 +29,7 @@ function Subtotal({ basket }) {
                 <div className="subtotal__item">
                     <p>Tạm tính</p>
                     <div className="subtotal__price">
-                        <p className="subtotal__priceProvisonal">{handleTotalPrice()}</p>
+                        <p className="subtotal__priceProvisonal">{getBasketTotal(basket)}</p>
                         <p className="subtotal__concurrency">đ</p>
                     </div>
                 </div>
@@ -38,7 +48,7 @@ function Subtotal({ basket }) {
                     <p className="subtotal__concurrencyTotal">đ</p>
                 </div>
             </div>
-            <button className="subtotal__buttonPay">
+            <button className="subtotal__buttonPay" onClick={handleCheckout}>
                 Mua Hàng ({basket?.length})
             </button>
         </div>

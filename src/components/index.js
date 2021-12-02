@@ -7,3 +7,5 @@ export { default as Checkout } from './Checkout';
 export { default as Subtotal } from './Subtotal';
 export { default as Basket } from './Basket';
 export { default as BasketProduct } from './Basket/BasketProduct';
+export { default as Notification } from './Notification';
+export { default as ConfirmDialog } from './ConfirmDialog';

@@ -10,10 +10,12 @@ import {
     Paper,
     Checkbox
 } from '@mui/material';
-import { useStateValue } from '../../provider/StateProvider';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./Basket.css";
 import { currencyFormat } from '../../utils/CurrencyFormat';
+import Notification from '../Notification';
+import { useStateValue } from '../../provider/StateProvider';
+import ConfirmDialog from '../ConfirmDialog/ConfirmDialog';
 
 function BasketTableHead(props) {
     const { onSelectAllClick, numSelected, rowCount } = props;
@@ -72,8 +74,11 @@ function BasketTableHead(props) {
     );
 }
 
-const Basket = ({ basket }) => {
+const Basket = () => {
+    const [{ basket }, dispatch] = useStateValue();
     const [selected, setSelected] = useState([]);
+    const [notify, setNotify] = useState({ isOpen: false, message: "", type: "" });
+    const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: "" });
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
@@ -104,7 +109,21 @@ const Basket = ({ basket }) => {
         setSelected(newSelected);
     };
 
-    const isSelected = (id) => basket.indexOf(id) !== -1;
+    const isSelected = (id) => selected.indexOf(id) !== -1;
+
+    const handleDelete = (id) => {
+        dispatch({
+            type: "DELETE_TO_BASKET",
+            basket: basket,
+            id: id
+        });
+
+        setNotify({
+            isOpen: true,
+            message: "Xóa thành công",
+            type: "success"
+        });
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -124,7 +143,6 @@ const Basket = ({ basket }) => {
                                 return (
                                     <TableRow
                                         hover
-                                        onClick={(event) => handleClick(event, product.id)}
                                         role="checkbox"
                                         aria-checked={isItemSelected}
                                         tabIndex={-1}
@@ -133,6 +151,7 @@ const Basket = ({ basket }) => {
                                     >
                                         <TableCell padding="checkbox">
                                             <Checkbox
+                                                onClick={(event) => handleClick(event, product.id)}
                                                 color="primary"
                                                 checked={isItemSelected}
                                                 inputProps={{
@@ -157,7 +176,21 @@ const Basket = ({ basket }) => {
                                         <TableCell>{product.quantity}</TableCell>
                                         <TableCell>{currencyFormat(product.price * product.quantity)}</TableCell>
                                         <TableCell>
-                                            <DeleteIcon />
+                                            <button className="basket__delete" onClick={() => {
+                                                setConfirmDialog({
+                                                    title: "Bạn muốn xoá sản phẩm này?",
+                                                    isOpen: true,
+                                                    onConfirm: () => {
+                                                        handleDelete(product.id);
+                                                        setConfirmDialog({
+                                                            ...confirmDialog,
+                                                            isOpen: false
+                                                        })
+                                                    }
+                                                });
+                                            }}>
+                                                <DeleteIcon />
+                                            </button>
                                         </TableCell>
                                     </TableRow>
                                 );
@@ -166,6 +199,14 @@ const Basket = ({ basket }) => {
                     </Table>
                 </TableContainer>
             </Paper>
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
+            <Notification
+                notify={notify}
+                setNotify={setNotify}
+            />
         </Box>
     );
 }
