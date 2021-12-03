@@ -12,3 +12,4 @@ export { default as ConfirmDialog } from './ConfirmDialog';
 export { default as Login } from './Login';
 export { default as Button } from './Custom/Button';
 export { default as Input } from './Custom/Input';
+export { default as Map } from './Map';

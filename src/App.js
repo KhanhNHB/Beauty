@@ -4,7 +4,8 @@ import {
   Detail,
   Header,
   Home,
-  Login
+  Login,
+  Map
 } from './components';
 import {
   BrowserRouter as Router,
@@ -32,7 +33,7 @@ function App() {
           />
           <Route
             path="/login"
-            element={<Login />}
+            element={<Map />}
           />
         </Routes>
       </div>
