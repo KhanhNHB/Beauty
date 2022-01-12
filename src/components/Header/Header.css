@@ -14,8 +14,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1b74e4;
-    color: white;
+    background-color: lightgray;
+    color: #808080;
     padding: 10px 30px;
     font-size: 12px;
 }
@@ -40,13 +40,8 @@
 .header__body {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0px 30px;
-}
-
-.header__bottom {
-    display: flex;
-    padding: 20px 30px;
 }
 
 .header__logo_container {
@@ -68,18 +63,18 @@
     border: 1px solid lightgray;
 }
 
-.header__searchIcon {
+.header__search__icon {
     padding: 5px;
     height: 30px !important;
     border-radius: 24px 0px 0px 24px;
     color: gray;
 }
 
-.header__searchIcon:hover {
+.header__search__icon:hover {
     cursor: pointer;
 }
 
-.header__searchInput {
+.header__search__input {
     height: 20px;
     width: 100%;
     padding: 10px;
@@ -92,14 +87,18 @@
 .header__nav {
     display: flex;
     flex: 1;
-    justify-content: space-evenly;
+    justify-content: end;
 }
 
 .header__option {
     display: flex;
 }
 
-.header__optionPerson {
+.header__person__icon {
+    color: gray;
+}
+
+.header__option__person {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,19 +106,15 @@
     margin-right: 10px;
 }
 
-.header__personIcon {
-    color: gray;
-}
-
-.header__optionLineOne {
+.header__option__line__one {
     font-size: 12px;
 }
 
-.header__optionLineTwo {
+.header__option__line__two {
     font-size: 14px;
 }
 
-.header__optionBasket {
+.header__option__basket {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -127,7 +122,7 @@
     color: gray;
 }
 
-.header__basketCount {
+.header__basket__count {
     position: relative;
     width: 20px;
     height: 20px;
@@ -139,12 +134,52 @@
     margin: 0 10px;
 }
 
-.header__basketTitle {
+.header__basket__title {
     position: relative;
     top: 8px;
     left: -40px;
 }
 
-@media (min-width: 768px) {
+.header__bottom {
+    display: flex;
+    justify-content: center;
+    padding: 20px 30px;
+}
 
+.header__menu {
+    display: flex;
+}
+
+.header__menu__item {
+    display: flex;
+    padding: 0px 30px;
+}
+
+.header__menu__item__child {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80%;
+    display: none;
+    background-color: green;
+}
+
+.collections:hover .header__menu__item__child {
+    display: block;
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+    80% {
+        transform: scaleY(1.1)
+    }
+    100% {
+        transform: scaleY(1)
+    }
 }

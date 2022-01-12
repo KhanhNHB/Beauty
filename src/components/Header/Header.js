@@ -6,11 +6,20 @@ import PersonIcon from '@mui/icons-material/Person';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import MailIcon from '@mui/icons-material/Mail';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../../provider/StateProvider';
+import { getMainMenus } from '../../helpers';
 
 function Header() {
     const [{ basket }] = useStateValue();
+
+    const data = {
+        contacts: {
+            phone: "(+84) 866 844 971",
+            email: "giauttn@beauty.com"
+        }
+    };
 
     return (
         <div className="header">
@@ -18,17 +27,21 @@ function Header() {
                 <div className="header__contact">
                     <div className="header__contact__item">
                         <PhoneIphoneIcon className="header__contact__icon" fontSize="small" />
-                        <p>(+84) 866 844 971</p>
+                        <p>{data.contacts.phone}</p>
                     </div>
                     <div className="header__contact__item">
                         <MailIcon className="header__contact__icon" fontSize="small" />
-                        <p>giauttn@beauty.com</p>
+                        <p>{data.contacts.email}</p>
                     </div>
                 </div>
                 <div className="header__location">
-                    <LocationOnIcon className="header__location__icon" fontSize="small" />
-                    <Link to="/location" style={{ textDecoration: "none" }}>
-                        <p style={{ color: "white" }}>Vị trí cửa hàng</p>
+                    <Link to="/location" style={{
+                        display: "flex",
+                        textDecoration: "none",
+                        color: "#808080"
+                    }}>
+                        <LocationOnIcon className="header__location__icon" fontSize="small" />
+                        <p>Vị trí cửa hàng</p>
                     </Link>
                 </div>
             </div>
@@ -40,59 +53,142 @@ function Header() {
                 </div>
 
                 <div className="header__search">
-                    <SearchIcon className="header__searchIcon" />
-                    <input className="header__searchInput" type="text" placeholder="Tìm sản phẩm, danh mục hay thương hiệu....." />
+                    <SearchIcon className="header__search__icon" />
+                    <input className="header__search__input" type="text" placeholder="Tìm sản phẩm, danh mục hay thương hiệu....." />
                 </div>
 
                 <div className="header__nav">
                     <div className="header__option">
-                        <PersonIcon className="header__personIcon" fontSize="large" />
-                        <Link to="/login" style={{ textDecoration: "none" }}>
-                            <div className="header__optionPerson">
-                                <span className="header__optionLineOne">Đăng Nhập / Đăng Ký</span>
-                                <span className="header__optionLineTwo">Tài khoản</span>
+                        <Link to="/login" style={{
+                            display: "flex",
+                            textDecoration: "none",
+                            color: "red"
+                        }}>
+                            <PersonIcon className="header__person__icon" fontSize="large" />
+                            <div className="header__option__person">
+                                <span className="header__option__line__one">Đăng Nhập / Đăng Ký</span>
+                                <span className="header__option__line__two">Tài khoản</span>
+                            </div>
+                        </Link>
+                        <Link to="/checkout" style={{ textDecoration: "none" }}>
+                            <div className="header__option__basket">
+                                <ShoppingBasketOutlinedIcon className="header__basket__icon" fontSize="large" />
+                                <span
+                                    className="header__option__line__two header__basket__count"
+                                    style={{
+                                        color: basket?.length !== 0 ? "white" : "black",
+                                        backgroundColor: basket?.length !== 0 ? "red" : ""
+                                    }}
+                                >
+                                    {basket?.length}
+                                </span>
+                                <span className="header__optionLineOne header__basket__title">Giỏ Hàng</span>
                             </div>
                         </Link>
                     </div>
-                    {/* <div className="header__option">
-                    <span className="header__optionLineOne">Returns</span>
-                    <span className="header__optionLineTwo">& Order</span>
                 </div>
-
-                <div className="header__option">
-                    <span className="header__optionLineOne">Your</span>
-                    <span className="header__optionLineTwo">Prime</span>
-                </div> */}
-                </div>
-
-                <Link to="/checkout" style={{ textDecoration: "none" }}>
-                    <div className="header__optionBasket">
-                        <ShoppingBasketOutlinedIcon
-                            className="header__basketIcon"
-                            fontSize="large"
-                        />
-                        <span
-                            className="header__optionLineTwo header__basketCount"
-                            style={{
-                                color: basket?.length !== 0 ? "white" : "black",
-                                backgroundColor: basket?.length !== 0 ? "red" : ""
-                            }}
-                        >
-                            {basket?.length}
-                        </span>
-                        <span className="header__optionLineOne header__basketTitle">Giỏ Hàng</span>
-                    </div>
-                </Link>
             </div>
             <div className="header__bottom">
-                <div className="header__">
-                    <div className="header__home">
-                        <p>Trang chủ</p>
+                <div className="header__menu">
+                    {getMainMenus().map(menu => (
+                        <div className={"header__menu__item " + menu.id} key={menu.id}>
+                            <Link to={"/" + menu.id} style={{
+                                display: "flex",
+                                textDecoration: "none",
+                                color: "red"
+                            }}>
+                                <p>{menu.label}</p>
+                                {/* {menu.id !== "home" && 
+                                <ArrowDropDownIcon className="header__menu__icon" />
+                                <div className="header__menu__item__child">
+                                <div className="header__menu__item__child__head">
+                                    <Link to="/face" style={{
+                                        display: "flex",
+                                        textDecoration: "none",
+                                        color: "black"
+                                    }}>
+                                        <p>Mặt</p>
+                                    </Link>
+                                </div>
+                                <div className="header__menu__item__child__tail">
+                                    <Link to="/face" style={{
+                                        display: "flex",
+                                        textDecoration: "none",
+                                        color: "black"
+                                    }}>
+                                        <p>Nền</p>
+                                    </Link>
+                                </div>
+                                } 
+                            </div>*/}
+                            </Link>
+                        </div>
+                    ))}
+
+                    {/* <div className="header__menu__item collections">
+                        <Link to="/collections" style={{
+                            display: "flex",
+                            textDecoration: "none",
+                            color: "black"
+                        }}>
+                            <p>Bộ sưu tập</p>
+                            <ArrowDropDownIcon className="header__menu__icon" />
+                            <div className="header__menu__item__child">
+                                <div className="header__menu__item__child__head">
+                                    <Link to="/face" style={{
+                                        display: "flex",
+                                        textDecoration: "none",
+                                        color: "black"
+                                    }}>
+                                        <p>Mặt</p>
+                                    </Link>
+                                </div>
+                                <div className="header__menu__item__child__tail">
+                                    <Link to="/face" style={{
+                                        display: "flex",
+                                        textDecoration: "none",
+                                        color: "black"
+                                    }}>
+                                        <p>Nền</p>
+                                    </Link>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
+                    <div className="header__menu__item">
+                        <Link to="/cosmetics" style={{
+                            display: "flex",
+                            textDecoration: "none",
+                            color: "black"
+                        }}>
+                            <p>Mỹ Phẩm</p>
+                            <ArrowDropDownIcon className="header__menu__icon" />
+                        </Link>
+                    </div>
+                    <div className="header__menu__item">
+                        <Link to="/make-ups" style={{
+                            display: "flex",
+                            textDecoration: "none",
+                            color: "black"
+                        }}>
+                            <p>Trang điểm</p>
+                            <ArrowDropDownIcon className="header__menu__icon" />
+                        </Link>
+                    </div>
+                    <div className="header__menu__item">
+                        <Link to="/tools" style={{
+                            display: "flex",
+                            textDecoration: "none",
+                            color: "black"
+                        }}>
+                            <p>Dụng cụ</p>
+                            <ArrowDropDownIcon className="header__menu__icon" />
+                        </Link>
+                    </div> */}
                 </div>
             </div>
         </div>
     )
 }
 
-export default Header
+export default Header;
