@@ -35,6 +35,10 @@ function App() {
             path="/login"
             element={<Map />}
           />
+           <Route
+            path="/location"
+            element={<Map />}
+          />
         </Routes>
       </div>
     </Router>

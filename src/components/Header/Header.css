@@ -1,12 +1,52 @@
 .header {
-    height: 60px;
+    height: 160px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     background-color: white;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.header__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1b74e4;
+    color: white;
+    padding: 10px 30px;
+    font-size: 12px;
+}
+
+.header__contact {
+    display: flex;
+}
+
+.header__contact__icon {
+    margin-right: 5px;
+}
+
+.header__contact__item {
+    display: flex;
+    margin-right: 10px;
+}
+
+.header__location {
+    display: flex;
+}
+
+.header__body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 30px;
+}
+
+.header__bottom {
+    display: flex;
+    padding: 20px 30px;
 }
 
 .header__logo_container {
@@ -35,6 +75,10 @@
     color: gray;
 }
 
+.header__searchIcon:hover {
+    cursor: pointer;
+}
+
 .header__searchInput {
     height: 20px;
     width: 100%;
@@ -47,8 +91,12 @@
 
 .header__nav {
     display: flex;
-    flex-direction: row;
+    flex: 1;
     justify-content: space-evenly;
+}
+
+.header__option {
+    display: flex;
 }
 
 .header__optionPerson {
