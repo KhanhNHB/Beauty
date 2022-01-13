@@ -9,7 +9,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../../provider/StateProvider';
-import { getMainMenus } from '../../helpers';
+import { getCategories, getCollections, getMainMenus } from '../../helpers';
 
 function Header() {
     const [{ basket }] = useStateValue();
@@ -20,6 +20,65 @@ function Header() {
             email: "giauttn@beauty.com"
         }
     };
+
+    const buildCategory = collection_id => {
+        return getCategories().map(category => {
+            return collection_id === category.collection_id && (
+                <div className="header__menu__item__child__tail">
+                    <Link to={"/" + category.name} style={{
+                        display: "flex",
+                        textDecoration: "none",
+                        color: "black"
+                    }}>
+                        <p>{category.label}</p>
+                    </Link>
+                </div>
+            )
+        });
+    };
+
+    const buildDropMenu = menu => {
+        return (
+            <>
+                <ArrowDropDownIcon className="header__menu__icon" />
+                <div className={"header__menu__item__child " + menu.name}>
+                    {
+                        getCollections().map(collection => {
+                            return collection.menu_id === menu.id && (
+                                <div className="header__menu__item__child__container">
+                                    <div className="header__menu__item__child__head">
+                                        <Link to={"/" + collection.name} style={{
+                                            display: "flex",
+                                            textDecoration: "none",
+                                            color: "black"
+                                        }}>
+                                            <p>{collection.label}</p>
+                                        </Link>
+                                    </div>
+                                    {buildCategory(collection.id)}
+                                </div>
+                            );
+                        })
+                    }
+                </div>
+            </>
+        );
+    }
+
+    const buildMainMenu = () => {
+        return getMainMenus().map(menu => (
+            <div className={"header__menu__item " + menu.name} key={menu.id}>
+                <Link to={"/" + menu.name} style={{
+                    display: "flex",
+                    textDecoration: "none",
+                    color: "black"
+                }}>
+                    <p>{menu.label}</p>
+                    {(menu.id !== "1") && buildDropMenu(menu)}
+                </Link>
+            </div>
+        ));
+    }
 
     return (
         <div className="header">
@@ -90,101 +149,7 @@ function Header() {
             </div>
             <div className="header__bottom">
                 <div className="header__menu">
-                    {getMainMenus().map(menu => (
-                        <div className={"header__menu__item " + menu.id} key={menu.id}>
-                            <Link to={"/" + menu.id} style={{
-                                display: "flex",
-                                textDecoration: "none",
-                                color: "red"
-                            }}>
-                                <p>{menu.label}</p>
-                                {/* {menu.id !== "home" && 
-                                <ArrowDropDownIcon className="header__menu__icon" />
-                                <div className="header__menu__item__child">
-                                <div className="header__menu__item__child__head">
-                                    <Link to="/face" style={{
-                                        display: "flex",
-                                        textDecoration: "none",
-                                        color: "black"
-                                    }}>
-                                        <p>Mặt</p>
-                                    </Link>
-                                </div>
-                                <div className="header__menu__item__child__tail">
-                                    <Link to="/face" style={{
-                                        display: "flex",
-                                        textDecoration: "none",
-                                        color: "black"
-                                    }}>
-                                        <p>Nền</p>
-                                    </Link>
-                                </div>
-                                } 
-                            </div>*/}
-                            </Link>
-                        </div>
-                    ))}
-
-                    {/* <div className="header__menu__item collections">
-                        <Link to="/collections" style={{
-                            display: "flex",
-                            textDecoration: "none",
-                            color: "black"
-                        }}>
-                            <p>Bộ sưu tập</p>
-                            <ArrowDropDownIcon className="header__menu__icon" />
-                            <div className="header__menu__item__child">
-                                <div className="header__menu__item__child__head">
-                                    <Link to="/face" style={{
-                                        display: "flex",
-                                        textDecoration: "none",
-                                        color: "black"
-                                    }}>
-                                        <p>Mặt</p>
-                                    </Link>
-                                </div>
-                                <div className="header__menu__item__child__tail">
-                                    <Link to="/face" style={{
-                                        display: "flex",
-                                        textDecoration: "none",
-                                        color: "black"
-                                    }}>
-                                        <p>Nền</p>
-                                    </Link>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="header__menu__item">
-                        <Link to="/cosmetics" style={{
-                            display: "flex",
-                            textDecoration: "none",
-                            color: "black"
-                        }}>
-                            <p>Mỹ Phẩm</p>
-                            <ArrowDropDownIcon className="header__menu__icon" />
-                        </Link>
-                    </div>
-                    <div className="header__menu__item">
-                        <Link to="/make-ups" style={{
-                            display: "flex",
-                            textDecoration: "none",
-                            color: "black"
-                        }}>
-                            <p>Trang điểm</p>
-                            <ArrowDropDownIcon className="header__menu__icon" />
-                        </Link>
-                    </div>
-                    <div className="header__menu__item">
-                        <Link to="/tools" style={{
-                            display: "flex",
-                            textDecoration: "none",
-                            color: "black"
-                        }}>
-                            <p>Dụng cụ</p>
-                            <ArrowDropDownIcon className="header__menu__icon" />
-                        </Link>
-                    </div> */}
+                    {buildMainMenu()}
                 </div>
             </div>
         </div>
