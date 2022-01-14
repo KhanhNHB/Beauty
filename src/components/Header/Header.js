@@ -25,11 +25,10 @@ function Header() {
         return getCategories().map(category => {
             return collection_id === category.collection_id && (
                 <div className="header__menu__item__child__tail">
-                    <Link to={"/" + category.name} style={{
-                        display: "flex",
-                        textDecoration: "none",
-                        color: "black"
-                    }}>
+                    <Link to={"/" + category.name}
+                        className="link"
+                        style={{ textDecoration: "none" }}
+                    >
                         <p>{category.label}</p>
                     </Link>
                 </div>
@@ -47,11 +46,10 @@ function Header() {
                             return collection.menu_id === menu.id && (
                                 <div className="header__menu__item__child__container">
                                     <div className="header__menu__item__child__head">
-                                        <Link to={"/" + collection.name} style={{
-                                            display: "flex",
-                                            textDecoration: "none",
-                                            color: "black"
-                                        }}>
+                                        <Link to={"/" + collection.name}
+                                            className="link"
+                                            style={{ textDecoration: "none" }}
+                                        >
                                             <p>{collection.label}</p>
                                         </Link>
                                     </div>
@@ -68,11 +66,10 @@ function Header() {
     const buildMainMenu = () => {
         return getMainMenus().map(menu => (
             <div className={"header__menu__item " + menu.name} key={menu.id}>
-                <Link to={"/" + menu.name} style={{
-                    display: "flex",
-                    textDecoration: "none",
-                    color: "black"
-                }}>
+                <Link to={"/" + menu.name}
+                    className="link"
+                    style={{ textDecoration: "none" }}
+                >
                     <p>{menu.label}</p>
                     {(menu.id !== "1") && buildDropMenu(menu)}
                 </Link>
@@ -94,11 +91,10 @@ function Header() {
                     </div>
                 </div>
                 <div className="header__location">
-                    <Link to="/location" style={{
-                        display: "flex",
-                        textDecoration: "none",
-                        color: "#808080"
-                    }}>
+                    <Link to="/location"
+                        className="link"
+                        style={{ textDecoration: "none" }}
+                    >
                         <LocationOnIcon className="header__location__icon" fontSize="small" />
                         <p>Vị trí cửa hàng</p>
                     </Link>
@@ -118,18 +114,22 @@ function Header() {
 
                 <div className="header__nav">
                     <div className="header__option">
-                        <Link to="/login" style={{
-                            display: "flex",
-                            textDecoration: "none",
-                            color: "red"
-                        }}>
-                            <PersonIcon className="header__person__icon" fontSize="large" />
+                        <Link to="/login"
+                            className="link"
+                            style={{ textDecoration: "none" }}
+                        >
                             <div className="header__option__person">
-                                <span className="header__option__line__one">Đăng Nhập / Đăng Ký</span>
-                                <span className="header__option__line__two">Tài khoản</span>
+                                <PersonIcon className="header__person__icon" fontSize="large" />
+                                <div className="header__option__line">
+                                    <span className="header__option__line__one">Đăng Nhập / Đăng Ký</span>
+                                    <span className="header__option__line__two">Tài khoản</span>
+                                </div>
                             </div>
                         </Link>
-                        <Link to="/checkout" style={{ textDecoration: "none" }}>
+                        <Link to="/checkout"
+                            className="link"
+                            style={{ textDecoration: "none" }}
+                        >
                             <div className="header__option__basket">
                                 <ShoppingBasketOutlinedIcon className="header__basket__icon" fontSize="large" />
                                 <span
@@ -153,7 +153,7 @@ function Header() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Header;
