@@ -10,6 +10,24 @@
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
+.link {
+    display: flex;
+    text-decoration: none;
+    color: black;
+}
+
+.link:hover {
+    color: #c9a654;
+}
+
+.link:hover .header__option__person {
+    color: #c9a654;
+}
+
+.link:hover .header__option__basket {
+    color: #c9a654;
+}
+
 .header__top {
     display: flex;
     align-items: center;
@@ -162,61 +180,19 @@
 .header__menu__item__child {
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
+    left: -250px;
+    margin: auto;
     display: none;
-    width: 100%;
+    width: 1200px;
     border-radius: 3px;
     background-color: white;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     perspective: 1000px;
-}
-
-.header__menu__item__child__container {
-    display: flex;
-    flex-direction: column;
-    width: 180px;
-    border-radius: 3px;
-    padding: 10px;
-    margin: 10px;
     cursor: default;
-}
-
-.header__menu__item__child__head {
-    display: flex;
-    font-size: 18px;
-    padding: 10px 0px;
-}
-
-.link {
-    display: flex;
-    text-decoration: none;
-    color: black;
-}
-
-.link:hover {
-    color: #c9a654;
-}
-
-.link:hover .header__option__person {
-    color: #c9a654;
-}
-
-.link:hover .header__option__basket {
-    color: #c9a654;
-}
-
-.header__menu__item__child__tail {
-    display: flex;
-    font-size: 14px;
-    margin: 5px 0px;
 }
 
 .collections:hover .header__menu__item__child {
     display: flex;
-    cursor: default;
-    flex-wrap: wrap;
-    gap: 20px;
     justify-content: center;
     animation: growDown 300ms ease-in-out forwards;
     transform-origin: top center;
@@ -259,4 +235,43 @@
     100% {
         transform: scaleY(1)
     }
+}
+
+.header__menu__item__child__container {
+    display: flex;
+    flex: 2;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header__menu__item__child__value {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.header__menu__item__child__head {
+    display: flex;
+    font-size: 18px;
+    padding: 10px 0px;
+}
+
+.header__menu__item__child__tail {
+    display: flex;
+    font-size: 14px;
+    margin: 5px 0px;
+}
+
+.header__menu__image {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: lightgray;
+}
+
+.menu__image {
+    width: 100%;
 }

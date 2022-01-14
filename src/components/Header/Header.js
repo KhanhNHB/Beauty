@@ -36,28 +36,43 @@ function Header() {
         });
     };
 
+    const buildMenuImages = (menu_label) => {
+        return (
+            <div className="header__menu__image">
+                <img
+                    className="menu__image"
+                    src="https://res.cloudinary.com/dvehkdedj/image/upload/v1638255967/79947294_sjlesz.png"
+                    alt=""
+                />
+            </div>
+        );
+    };
+
     const buildDropMenu = menu => {
         return (
             <>
                 <ArrowDropDownIcon className="header__menu__icon" />
                 <div className={"header__menu__item__child " + menu.name}>
-                    {
-                        getCollections().map(collection => {
-                            return collection.menu_id === menu.id && (
-                                <div className="header__menu__item__child__container">
-                                    <div className="header__menu__item__child__head">
-                                        <Link to={"/" + collection.name}
-                                            className="link"
-                                            style={{ textDecoration: "none" }}
-                                        >
-                                            <p>{collection.label}</p>
-                                        </Link>
+                    <div className="header__menu__item__child__container">
+                        {
+                            getCollections().map(collection => {
+                                return collection.menu_id === menu.id && (
+                                    <div className="header__menu__item__child__value">
+                                        <div className="header__menu__item__child__head">
+                                            <Link to={"/" + collection.name}
+                                                className="link"
+                                                style={{ textDecoration: "none" }}
+                                            >
+                                                <p>{collection.label}</p>
+                                            </Link>
+                                        </div>
+                                        {buildCategory(collection.id)}
                                     </div>
-                                    {buildCategory(collection.id)}
-                                </div>
-                            );
-                        })
-                    }
+                                );
+                            })
+                        }
+                    </div>
+                    {buildMenuImages(menu.label)}
                 </div>
             </>
         );
